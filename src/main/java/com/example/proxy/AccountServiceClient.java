@@ -1,8 +1,7 @@
 package com.example.proxy;
 
 import com.example.model.Account;
-import io.micronaut.http.annotation.Get;
-import io.micronaut.http.annotation.Put;
+import io.micronaut.http.annotation.*;
 import io.micronaut.http.client.annotation.Client;
 
 import java.math.BigDecimal;
@@ -11,8 +10,9 @@ import java.math.BigDecimal;
 public interface AccountServiceClient {
 
     @Get("/{accountId}")
-    Account getAccountById(Long accountId);
+    Account getAccountById(@PathVariable Long accountId);
 
     @Put("/{accountId}/balance")
-    void updateAccountBalance(Long accountId, BigDecimal newBalance);
+    @Header(name = "Content-Type", value = "application/json")
+    void updateAccountBalance(@PathVariable Long accountId, @Body BigDecimal newBalance);
 }

@@ -6,6 +6,7 @@ import com.example.model.Payment;
 import com.example.proxy.AccountServiceClient;
 import com.example.proxy.PayeeServiceClient;
 import com.example.repo.PaymentRepository;
+import io.micronaut.http.client.exceptions.HttpClientResponseException;
 import jakarta.inject.Singleton;
 
 import java.math.BigDecimal;
@@ -27,7 +28,12 @@ public class BillPayService {
 
     public Payment makePayment(Long payeeId, Long accountId, BigDecimal amount) {
         // Validate payee
-        Payee payee = payeeServiceClient.getPayeeById(payeeId);
+        try {
+            Payee payee = payeeServiceClient.getPayeeById(payeeId);
+        } catch (HttpClientResponseException e) {
+            System.out.println("Error while fetching Payee: " + e.getMessage());
+            System.out.println("Response body: " + e.getResponse().getBody(String.class).orElse("No body"));
+        }
 
         // Validate account and balance
         Account account = accountServiceClient.getAccountById(accountId);
@@ -36,7 +42,7 @@ public class BillPayService {
         }
 
         // Deduct the amount
-        accountServiceClient.updateAccountBalance(accountId, account.getBalance().subtract(amount));
+//        accountServiceClient.updateAccountBalance(accountId, account.getBalance().subtract(amount));
 
         // Record the payment
         Payment payment = new Payment();
