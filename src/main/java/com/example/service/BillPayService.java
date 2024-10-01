@@ -42,7 +42,7 @@ public class BillPayService {
         }
 
         // Deduct the amount
-//        accountServiceClient.updateAccountBalance(accountId, account.getBalance().subtract(amount));
+        accountServiceClient.updateAccountBalance(accountId, account.getBalance().subtract(amount));
 
         // Record the payment
         Payment payment = new Payment();

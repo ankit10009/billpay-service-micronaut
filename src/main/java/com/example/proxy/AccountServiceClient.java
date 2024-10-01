@@ -14,5 +14,5 @@ public interface AccountServiceClient {
 
     @Put("/{accountId}/balance")
     @Header(name = "Content-Type", value = "application/json")
-    void updateAccountBalance(@PathVariable Long accountId, @Body BigDecimal newBalance);
+    void updateAccountBalance(@PathVariable Long accountId, @QueryValue BigDecimal newBalance);
 }
