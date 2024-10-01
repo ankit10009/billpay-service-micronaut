@@ -1,5 +1,11 @@
 package com.example.service;
 
+import com.example.model.Account;
+import com.example.model.Payee;
+import com.example.model.Payment;
+import com.example.proxy.AccountServiceClient;
+import com.example.proxy.PayeeServiceClient;
+import com.example.repo.PaymentRepository;
 import jakarta.inject.Singleton;
 
 import java.math.BigDecimal;

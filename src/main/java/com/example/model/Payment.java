@@ -1,18 +1,28 @@
 package com.example.model;
 
-import io.micronaut.data.annotation.GeneratedValue;
-import io.micronaut.data.annotation.MappedEntity;
-import io.micronaut.data.model.naming.NamingStrategies;
 
-import javax.persistence.Id;
+
+import io.micronaut.core.annotation.Introspected;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@MappedEntity(value = "payments", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase.class)
+@Introspected
+@Entity
+@Table(name = "payments")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Payment {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long payeeId;
@@ -20,5 +30,4 @@ public class Payment {
     private BigDecimal amount;
     private LocalDateTime paymentDate;
 
-    // Constructors, Getters, and Setters
 }

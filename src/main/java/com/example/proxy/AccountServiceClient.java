@@ -1,12 +1,13 @@
 package com.example.proxy;
 
+import com.example.model.Account;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Put;
 import io.micronaut.http.client.annotation.Client;
 
 import java.math.BigDecimal;
 
-@Client("/accounts")
+@Client("http://localhost:8701/accounts")
 public interface AccountServiceClient {
 
     @Get("/{accountId}")
