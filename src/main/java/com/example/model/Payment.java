@@ -1,14 +1,13 @@
 package com.example.model;
 
 
-
 import io.micronaut.core.annotation.Introspected;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 

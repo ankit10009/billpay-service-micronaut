@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 @Introspected
+
 public class Account {
 
     private Long id;
