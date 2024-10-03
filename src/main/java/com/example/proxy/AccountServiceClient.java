@@ -6,13 +6,13 @@ import io.micronaut.http.client.annotation.Client;
 
 import java.math.BigDecimal;
 
-@Client("http://localhost:8701/accounts")
+@Client(id="ACCOUNT-SERVICE-MICRONAUT")
 public interface AccountServiceClient {
 
-    @Get("/{accountId}")
+    @Get("/accounts/{accountId}")
     Account getAccountById(@PathVariable Long accountId);
 
-    @Put("/{accountId}/balance")
+    @Put("/accounts/{accountId}/balance")
     @Header(name = "Content-Type", value = "application/json")
     void updateAccountBalance(@PathVariable Long accountId, @QueryValue BigDecimal newBalance);
 }
